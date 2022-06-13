@@ -24,5 +24,6 @@ SELECT * FROM Suppliers
 SELECT * FROM Products
 SELECT S.SupplierID, S.ContactName, SUM(UnitPrice * UnitsInStock) AS [IMPORTE TOTAL DEL STOCK]  FROM Suppliers AS S INNER JOIN Products AS P ON S.SupplierID = P.SupplierID GROUP BY S.SupplierID, S.ContactName
 --9. ID del distribuidor y número de pedidos enviados a través de ese distribuidor. Añade el nombre del distribuidor
-
+SELECT S.CompanyName, O.ShipVia, COUNT(O.OrderID) AS [Nº DE PEDIDOS] FROM Shippers AS S INNER JOIN Orders AS O ON S.ShipperID = O.ShipVia GROUP BY S.CompanyName, O.ShipVia
 --10. ID de cada proveedor y número de productos distintos que nos suministra. Añade el nombre del proveedor.
+SELECT S.SupplierID, S.ContactName, COUNT(P.ProductID) AS [Nº DE PRODUCTOS]  FROM Suppliers AS S INNER JOIN Products AS P ON S.SupplierID = P.SupplierID GROUP BY S.SupplierID, S.ContactName
